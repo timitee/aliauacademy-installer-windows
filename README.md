@@ -34,5 +34,11 @@ This project provides a smoother way to install and run AliauAcademy in a Window
 ###### (the `--recursive` is required due to the `ka-lite` submodule)
 
 ---
+##### AliuaAcademy 
+    AliuaAcademy_org folder should be placed directly inside ka-lite-installer-windows 
+###### 
+
+
+---
 ##### If you wish to build it using Wine, run the following line:
     wine inno-compiler/ISCC.exe installer-source/KaliteSetupScript.iss
