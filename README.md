@@ -1,7 +1,7 @@
 KA Lite Installer for Windows
 ==========
 
-This project provides a smoother way to install and run KA Lite in a Windows Machine.
+This project provides a smoother way to install and run AliauAcademy in a Windows Machine.
 
 ---
 #### This project was built using the following software:
