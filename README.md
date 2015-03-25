@@ -21,7 +21,7 @@ This project provides a smoother way to install and run KA Lite in a Windows Mac
 * Select Build Solution.
 
 ---
-#### Instructions to build "KALiteSetup.exe":
+#### Instructions to build "AliauAcademy.exe":
 * Clone this repository;
 * Open `cmd` -- the Windows command prompt;
 * Run `git submodule update --init`
@@ -30,7 +30,7 @@ This project provides a smoother way to install and run KA Lite in a Windows Mac
 
 ---
 ##### To clone this repository, run the following line:
-    git clone --recursive https://github.com/learningequality/ka-lite-windows.git
+    git clone --recursive https://github.com/timitee/ka-lite-installer-windows/
 ###### (the `--recursive` is required due to the `ka-lite` submodule)
 
 ---
