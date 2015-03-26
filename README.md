@@ -1,4 +1,4 @@
-KA Lite Installer for Windows
+AliauAcademy Installer for Windows
 ==========
 
 This project provides a smoother way to install and run AliauAcademy in a Windows Machine.
@@ -30,7 +30,7 @@ This project provides a smoother way to install and run AliauAcademy in a Window
 
 ---
 ##### To clone this repository, run the following line:
-    git clone --recursive https://github.com/timitee/ka-lite-installer-windows/
+    git clone --recursive https://github.com/timitee/aliauacademy-installer-windows/
 ###### (the `--recursive` is required due to the `ka-lite` submodule)
 
 ---
