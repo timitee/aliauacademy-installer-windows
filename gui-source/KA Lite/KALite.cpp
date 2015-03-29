@@ -18,7 +18,7 @@ bool isServerStarting = false;
 
 void startServerAction()
 {
-	if(!runShellScript("start.bat", NULL, "ka-lite\\"))
+	if(!runShellScript("start.bat", NULL, "aliuacademy_org\\"))
 	{
 		// Handle error.
 		printConsole("Failed to run the script.\n");
@@ -31,13 +31,13 @@ void startServerAction()
 		needNotify = true;
 		isServerStarting = true;
 
-		window->sendTrayMessage("KA Lite", "The server is starting... please wait");
+		window->sendTrayMessage("AliuAcademy", "The server is starting... please wait");
 	}
 }
 
 void stopServerAction()
 {
-	if(!runShellScript("stop.bat", NULL, "ka-lite\\"))
+	if(!runShellScript("stop.bat", NULL, "aliuacademy_org\\"))
 	{
 		// Handle error.
 		printConsole("Failed to run the script.\n");
@@ -61,7 +61,7 @@ void loadBrowserAction()
 
 void exitKALiteAction()
 {
-	if(ask("Exiting..." , "Really want to exit KA Lite?"))
+	if(ask("Exiting..." , "Really want to exit AliuAcademy?"))
 	{
 		stopServerAction();
 		window->quit();
@@ -145,7 +145,7 @@ void autoStartServerAction()
 void checkServerThread()
 {
 	// We can handle things like checking if the server is online and controlling the state of each component.
-	if(isServerOnline("KA Lite session", "http://127.0.0.1:8008/"))
+	if(isServerOnline("AliuAcademy session", "http://127.0.0.1:8008/"))
 	{
 		menu1->disable();
 		menu2->enable();
@@ -153,7 +153,7 @@ void checkServerThread()
 
 		if(needNotify)
 		{
-			window->sendTrayMessage("KA Lite is running", "The server will be accessible locally at: http://127.0.0.1:8008/ or you can select \"Load in browser.\"");
+			window->sendTrayMessage("AliuAcademy is running", "The server will be accessible locally at: http://127.0.0.1:8008/ or you can select \"Load in browser.\"");
 			needNotify = false;
 		}
 
@@ -181,10 +181,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	menu2 = new fle_TrayMenuItem("Stop Server.", &stopServerAction);
 	menu3 = new fle_TrayMenuItem("Load in browser.", &loadBrowserAction);
 	menu4 = new fle_TrayMenuItem("Options", NULL);
-	menu5 = new fle_TrayMenuItem("Run KA Lite when the user logs in.", &runUserLogsInAction);
-	menu6 = new fle_TrayMenuItem("Run KA Lite at system startup.", &runAtStartupAction);
-	menu7 = new fle_TrayMenuItem("Auto-start server when KA Lite is run.", &autoStartServerAction);
-	menu8 = new fle_TrayMenuItem("Exit KA Lite.", &exitKALiteAction);
+	menu5 = new fle_TrayMenuItem("Run AliuAcademy when the user logs in.", &runUserLogsInAction);
+	menu6 = new fle_TrayMenuItem("Run AliuAcademy at system startup.", &runAtStartupAction);
+	menu7 = new fle_TrayMenuItem("Auto-start server when AliuAcademy is run.", &autoStartServerAction);
+	menu8 = new fle_TrayMenuItem("Exit AliuAcademy.", &exitKALiteAction);
 
 	menu4->setSubMenu();
 	menu4->addSubMenu(menu5);
