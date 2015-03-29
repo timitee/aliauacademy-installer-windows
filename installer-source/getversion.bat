@@ -1,5 +1,5 @@
 @echo off
-cd ..\ka-lite\kalite
+cd ..\aliuacademy_org\academy
 for /f "tokens=1-2 delims==, " %%I in (version.py) do ( 
     if "%%I" == "MAJOR_VERSION" ( set major_version=%%J) 
     if "%%I" == "MINOR_VERSION" ( set minor_version=%%J) 

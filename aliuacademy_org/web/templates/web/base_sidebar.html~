@@ -1,0 +1,14 @@
+{% extends 'web/base.html' %}
+
+{% block sidemenu %}
+    <div class="pure-menu custom-restricted-width">    
+    <div style="margin-top:20px;">    
+        <div class="pure-menu pure-menu-open" >
+            <ul class="pure-menu-list">
+            {% block sidemenuitems %}
+            {% endblock sidemenuitems %}   
+            </ul> 
+        </div> 
+    </div>
+    </div>
+{% endblock sidemenu %}   

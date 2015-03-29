@@ -1,12 +1,13 @@
 #define MyAppName "AliuaAcademy"
 #define MyAppPublisher "Foundation for Learning Equality"
 #define MyAppURL "http://learningequality.org/"
-#define MyAppExeName "AliuaAcademy.exe"
+#define MyAppExeName "AliuAcademy.exe"
 
-#define getKALiteVerion() \
+#define getAcademyVersion() \
     Local[1] = Exec(SourcePath+"\getversion.bat") == 0 ? StringChange(FileRead(FileOpen(SourcePath+"\version.temp")), " ", "") : "null"
 
-#define MyVersion = getKALiteVerion();
+#define MyVersion = "1.0.0."
+// getAcademyVersion();
 
 #expr DeleteFile(SourcePath+"\version.temp")
 
@@ -22,7 +23,7 @@ DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 LicenseFile=..\aliuacademy_org\LICENSE
 OutputDir=..\
-OutputBaseFilename=AliuaAcademy-{#MyVersion}
+OutputBaseFilename=AliuAcademy-{#MyVersion}
 SetupIconFile=logo48.ico
 Compression=lzma
 SolidCompression=yes
@@ -38,8 +39,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "..\aliuacademy_org\*"; DestDir: "{app}\aliuacademy_org"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\aliuacademy_org\content\*"; DestDir: "{app}\aliuacademy_org\content"; Flags: ignoreversion recursesubdirs createallsubdirs uninsneveruninstall
-//Source: "..\aliuacademy_org\kalite\database\*"; DestDir: "{app}\aliuacademy_org\kalite\database"; Flags: ignoreversion recursesubdirs createallsubdirs uninsneveruninstall
-Source: "..\gui-packed\AliuaAcademy.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\aliuacademy_org\academy\database\*"; DestDir: "{app}\aliuacademy_org\academy\database"; Flags: ignoreversion recursesubdirs createallsubdirs uninsneveruninstall
+Source: "..\gui-packed\AliuAcademy.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\gui-packed\guitools.vbs"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\gui-packed\images\logo48.ico"; DestDir: "{app}\images"; Flags: ignoreversion
 Source: "..\python-setup\*"; DestDir: "{app}\python-setup"; Flags: ignoreversion
@@ -47,7 +48,7 @@ Source: "..\python-setup\*"; DestDir: "{app}\python-setup"; Flags: ignoreversion
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{group}\{cm:ProgramOnTheWeb,{#MyAppName}}"; Filename: "{#MyAppURL}"
-Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "Uninstall AliuaAcademy"
+Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "Uninstall AliuAcademy"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon ; IconFilename: "{app}\images\logo48.ico"
 
 [Run]
@@ -58,32 +59,32 @@ Name: "{app}\"; Permissions: everyone-modify
 
 
 [InstallDelete]
-Type: Files; Name: "{app}\aliuacademy_org\kalite\updates\utils.*"
+// Type: Files; Name: "{app}\aliuacademy_org\academy\updates\utils.*"
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{app}\aliuacademy_org\python-packages"
-Type: filesandordirs; Name: "{app}\aliuacademy_org\kalite\foo"
-Type: filesandordirs; Name: "{app}\aliuacademy_org\kalite\central"
-Type: filesandordirs; Name: "{app}\aliuacademy_org\kalite\coachreports"
-Type: filesandordirs; Name: "{app}\aliuacademy_org\kalite\config"
-Type: filesandordirs; Name: "{app}\aliuacademy_org\kalite\contact"
-Type: filesandordirs; Name: "{app}\aliuacademy_org\kalite\control_panel"
-Type: filesandordirs; Name: "{app}\aliuacademy_org\kalite\faq"
-Type: filesandordirs; Name: "{app}\aliuacademy_org\kalite\khanload"
-Type: filesandordirs; Name: "{app}\aliuacademy_org\kalite\loadtesting"
-Type: filesandordirs; Name: "{app}\aliuacademy_org\kalite\main"
-Type: filesandordirs; Name: "{app}\aliuacademy_org\kalite\management"
-Type: filesandordirs; Name: "{app}\aliuacademy_org\kalite\registration"
-Type: filesandordirs; Name: "{app}\aliuacademy_org\kalite\securesync"
-Type: filesandordirs; Name: "{app}\aliuacademy_org\kalite\shared"
-Type: filesandordirs; Name: "{app}\aliuacademy_org\kalite\static"
-Type: filesandordirs; Name: "{app}\aliuacademy_org\kalite\templatetags"
-Type: filesandordirs; Name: "{app}\aliuacademy_org\kalite\templates"
-Type: filesandordirs; Name: "{app}\aliuacademy_org\kalite\tests"
-Type: filesandordirs; Name: "{app}\aliuacademy_org\kalite\updates"
-Type: filesandordirs; Name: "{app}\aliuacademy_org\kalite\utils"
-Type: Files; Name: "{app}\aliuacademy_org\kalite\*.pyc"
-Type: Files; Name: "{userstartup}\AliuaAcademy.lnk"
+Type: filesandordirs; Name: "{app}\aliuacademy_org\academy\base"
+Type: filesandordirs; Name: "{app}\aliuacademy_org\academy\distributed"
+Type: filesandordirs; Name: "{app}\aliuacademy_org\academy\django_cherrypy_wsgiserver"
+Type: filesandordirs; Name: "{app}\aliuacademy_org\academy\login"
+Type: filesandordirs; Name: "{app}\aliuacademy_org\academy\project"
+Type: filesandordirs; Name: "{app}\aliuacademy_org\academy\static"
+Type: filesandordirs; Name: "{app}\aliuacademy_org\academy\web"
+// Type: filesandordirs; Name: "{app}\aliuacademy_org\academy\khanload"
+// Type: filesandordirs; Name: "{app}\aliuacademy_org\academy\loadtesting"
+// Type: filesandordirs; Name: "{app}\aliuacademy_org\academy\main"
+// Type: filesandordirs; Name: "{app}\aliuacademy_org\academy\management"
+// Type: filesandordirs; Name: "{app}\aliuacademy_org\academy\registration"
+// Type: filesandordirs; Name: "{app}\aliuacademy_org\academy\securesync"
+// Type: filesandordirs; Name: "{app}\aliuacademy_org\academy\shared"
+// Type: filesandordirs; Name: "{app}\aliuacademy_org\academy\static"
+// Type: filesandordirs; Name: "{app}\aliuacademy_org\academy\templatetags"
+// Type: filesandordirs; Name: "{app}\aliuacademy_org\academy\templates"
+// Type: filesandordirs; Name: "{app}\aliuacademy_org\academy\tests"
+// Type: filesandordirs; Name: "{app}\aliuacademy_org\academy\updates"
+// Type: filesandordirs; Name: "{app}\aliuacademy_org\academy\utils"
+Type: Files; Name: "{app}\aliuacademy_org\academy\*.pyc"
+Type: Files; Name: "{userstartup}\AliuAcademy.lnk"
 Type: Files; Name: "{app}\CONFIG.dat"
 
 [Code]
@@ -99,7 +100,7 @@ var
   removeOldGuiTool: integer;
   uninstallError: integer;
   saveDatabaseTemp : integer;
-  cleanOldKaliteFolder : integer;
+  cleanOldAcademyFolder : integer;
   restoreDatabaseTemp : integer;
   forceCancel : boolean;
 
@@ -170,9 +171,9 @@ end;
 
 procedure HandleExistentDatabase(isOldInstallation : Boolean; targetPath : String);
 begin 
-    if FileExists(targetPath + '\aliuacademy_org\kalite\database\data.sqlite') then
+    if FileExists(targetPath + '\aliuacademy_org\academy\database\data.sqlite') then
     begin           
-        if MsgBox('We have detected an existing AliuaAcademy installation; would you like to upgrade?', mbInformation,  MB_YESNO or MB_DEFBUTTON1) = IDYES then
+        if MsgBox('We have detected an existing AliuAcademy installation; would you like to upgrade?', mbInformation,  MB_YESNO or MB_DEFBUTTON1) = IDYES then
         begin        
             existDatabase := True;
             isUpgrade := True;           
@@ -180,9 +181,9 @@ begin
             begin
                 if Not Exec(ExpandConstant('{cmd}'),'/C ( dir /b "unins***.exe" | findstr /r "unins[0-9][0-9][0-9].exe" ) > tempu & ( for /f "delims=" %A in ( tempu ) do start %A /SILENT /SUPPRESSMSGBOXES ) & del tempu', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, uninstallError) then
                 begin
-                    Exec(ExpandConstant('{cmd}'),'/C mkdir '+ExpandConstant('{tmp}')+'\aliuacademy_org\kalite\database & xcopy /y /s aliuacademy_org\kalite\database\data.sqlite '+ExpandConstant('{tmp}')+'\aliuacademy_org\kalite\database', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, saveDatabaseTemp);
-                    Exec(ExpandConstant('{cmd}'),'/C cd .. & del /q "'+ExpandConstant('{app}')+'\*" & for /d %x in ( "'+ExpandConstant('{app}')+'\*" ) do @rd /s /q "%x"', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, cleanOldKaliteFolder);
-                    Exec(ExpandConstant('{cmd}'),'/C mkdir aliuacademy_org\kalite\database & xcopy /y /s '+ExpandConstant('{tmp}')+'\aliuacademy_org\kalite\database\data.sqlite aliuacademy_org\kalite\database', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, restoreDatabaseTemp);
+                    Exec(ExpandConstant('{cmd}'),'/C mkdir '+ExpandConstant('{tmp}')+'\aliuacademy_org\academy\database & xcopy /y /s aliuacademy_org\academy\database\data.sqlite '+ExpandConstant('{tmp}')+'\aliuacademy_org\academy\database', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, saveDatabaseTemp);
+                    Exec(ExpandConstant('{cmd}'),'/C cd .. & del /q "'+ExpandConstant('{app}')+'\*" & for /d %x in ( "'+ExpandConstant('{app}')+'\*" ) do @rd /s /q "%x"', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, cleanOldAcademyFolder);
+                    Exec(ExpandConstant('{cmd}'),'/C mkdir aliuacademy_org\academy\database & xcopy /y /s '+ExpandConstant('{tmp}')+'\aliuacademy_org\academy\database\data.sqlite aliuacademy_org\academy\database', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, restoreDatabaseTemp);
                 end;   
             end;           
         end
@@ -190,7 +191,7 @@ begin
         begin
             existDatabase := False;
             isUpgrade := False;
-            if Not DeleteFile(targetPath + '\aliuacademy_org\kalite\database\data.sqlite') then
+            if Not DeleteFile(targetPath + '\aliuacademy_org\academy\database\data.sqlite') then
             begin
                 MsgBox('Error' #13#13 'Failed to delete the old database as requested; aborting the install.', mbError, MB_OK);
                 forceCancel := True;
@@ -302,7 +303,7 @@ procedure HandlePythonSetup;
 var
     installPythonErrorCode : Integer;
 begin
-    if(MsgBox('Python error' #13#13 'Python 3.4+ is required to run AliuaAcademy; do you wish to first install Python 3.4.3, before continuing with the installation of AliuaAcademy?', mbConfirmation, MB_YESNO) = idYes) then
+    if(MsgBox('Python error' #13#13 'Python 3.4+ is required to run AliuAcademy; do you wish to first install Python 3.4.3, before continuing with the installation of AliuAcademy?', mbConfirmation, MB_YESNO) = idYes) then
     begin
         ExtractTemporaryFile('python-3.4.3.msi');
         ShellExec('open', ExpandConstant('{tmp}')+'\python-3.4.3.msi', '', '', SW_SHOWNORMAL, ewWaitUntilTerminated, installPythonErrorCode);  
@@ -323,8 +324,8 @@ begin
     Result := true;
     startupFlag:=''; 
   
-    ShellExec('open','taskkill.exe','/F /T /im "AliuaAcademy.exe"','',SW_HIDE,ewNoWait,killErrorCode)
-    ShellExec('open','tskill.exe',' "AliuaAcademy"','',SW_HIDE,ewNoWait,killErrorCode);
+    ShellExec('open','taskkill.exe','/F /T /im "AliuAcademy.exe"','',SW_HIDE,ewNoWait,killErrorCode)
+    ShellExec('open','tskill.exe',' "AliuAcademy"','',SW_HIDE,ewNoWait,killErrorCode);
 
     RegDeleteValue(HKCU, 'SOFTWARE\Microsoft\Windows\CurrentVersion\Run', ExpandConstant('{#MyAppName}'));
    
@@ -346,7 +347,7 @@ var
 ErrorCode: Integer;
 begin
   ShellExec('open', 'taskkill.exe', '/F /T /im "KA Lite.exe"', '', SW_HIDE, ewNoWait, ErrorCode);
-  ShellExec('open', 'tskill.exe', '"AliuaAcademy"', '', SW_HIDE, ewNoWait, ErrorCode);
+  ShellExec('open', 'tskill.exe', '"AliuAcademy"', '', SW_HIDE, ewNoWait, ErrorCode);
   ShellExec('open', ExpandConstant('{app}') + '\aliuacademy_org\stop.bat', '', '', SW_HIDE, ewNoWait, ErrorCode);
   result := True;
 end;
@@ -355,10 +356,10 @@ procedure CurStepChanged(CurStep: TSetupStep);
 var
   ServerNameDescriptionCode: integer;
   StartupCode: integer;
-  moveKaliteFolderTemp: integer;
+  moveAcademyFolderTemp: integer;
   moveContentFolderTemp: integer;
-  cleanKaliteFolder: integer;
-  restoreKaliteFolder: integer;
+  cleanAcademyFolder: integer;
+  restoreAcademyFolder: integer;
   restoreContentFolder: integer;
   informationBoxFlagged: boolean;
   setupCommand: string;
@@ -371,11 +372,11 @@ begin
         Exec(ExpandConstant('{cmd}'),'/C aliuacademy_org\scripts\stop.bat', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, stopServerCode);
         Exec(ExpandConstant('{cmd}'),'/C del winshortcut.vbs', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, removeOldGuiTool);
     
-        if DirExists(ExpandConstant('{app}') + '\kalite') then
+        if DirExists(ExpandConstant('{app}') + '\academy') then
         begin
-            MsgBox('AliuaAcademy old data structure' #13#13 'Setup detected that you have the old file structure. Setup will now move data to update the structure. Please be patient; this may take some time.', mbInformation, MB_OK);
+            MsgBox('AliuAcademy old data structure' #13#13 'Setup detected that you have the old file structure. Setup will now move data to update the structure. Please be patient; this may take some time.', mbInformation, MB_OK);
             informationBoxFlagged :=True;      
-            Exec(ExpandConstant('{cmd}'),'/C mkdir '+ExpandConstant('{tmp}')+'\aliuacademy_org\kalite & xcopy /y /s kalite\* '+ExpandConstant('{tmp}')+'\aliuacademy_org\kalite', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, moveKaliteFolderTemp);      
+            Exec(ExpandConstant('{cmd}'),'/C mkdir '+ExpandConstant('{tmp}')+'\aliuacademy_org\academy & xcopy /y /s academy\* '+ExpandConstant('{tmp}')+'\aliuacademy_org\academy', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, moveAcademyFolderTemp);      
         end; 
       
         if DirExists(ExpandConstant('{app}') + '\content') then
@@ -390,11 +391,11 @@ begin
     
         if informationBoxFlagged then
         begin
-            Exec(ExpandConstant('{cmd}'),'/C cd .. & del /q "'+ExpandConstant('{app}')+'\*" & for /d %x in ( "'+ExpandConstant('{app}')+'\*" ) do @rd /s /q "%x"', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, cleanKaliteFolder);
+            Exec(ExpandConstant('{cmd}'),'/C cd .. & del /q "'+ExpandConstant('{app}')+'\*" & for /d %x in ( "'+ExpandConstant('{app}')+'\*" ) do @rd /s /q "%x"', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, cleanAcademyFolder);
     
-            if DirExists(ExpandConstant('{tmp}')+'\aliuacademy_org\kalite') then
+            if DirExists(ExpandConstant('{tmp}')+'\aliuacademy_org\academy') then
             begin
-                Exec(ExpandConstant('{cmd}'),'/C mkdir aliuacademy_org\kalite & xcopy /y /s '+ExpandConstant('{tmp}')+'\aliuacademy_org\kalite\* aliuacademy_org\kalite', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, restoreKaliteFolder);
+                Exec(ExpandConstant('{cmd}'),'/C mkdir aliuacademy_org\academy & xcopy /y /s '+ExpandConstant('{tmp}')+'\aliuacademy_org\academy\* aliuacademy_org\academy', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, restoreAcademyFolder);
             end;
 
             if DirExists(ExpandConstant('{tmp}')+'\aliuacademy_org\content') then
@@ -417,7 +418,7 @@ begin
             
             MsgBox('Setup will now configure the database. This operation may take a few minutes. Please be patient.', mbInformation, MB_OK);
       
-            if Not ShellExec('open', 'python.exe', setupCommand, ExpandConstant('{app}')+'\aliuacademy_org\kalite', SW_HIDE, ewWaitUntilTerminated, ServerNameDescriptionCode) then
+            if Not ShellExec('open', 'python.exe', setupCommand, ExpandConstant('{app}')+'\aliuacademy_org\academy', SW_HIDE, ewWaitUntilTerminated, ServerNameDescriptionCode) then
             begin
                 MsgBox('Critical error.' #13#13 'Setup has failed to initialize the database; aborting the install.', mbInformation, MB_OK);
                 forceCancel := True;
