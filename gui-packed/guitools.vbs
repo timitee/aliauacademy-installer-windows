@@ -36,9 +36,9 @@ ElseIf value = 3 Then
     If objFSO.FileExists(oShell.CurrentDirectory & "\aliuacademy_org\academy\runcherrypyserver.pid") Then
         WScript.Quit(0)
     End if
-    If objFSO.FileExists(oShell.CurrentDirectory & "\aliuacademy_org\academy\cronserver.pid") Then
-        WScript.Quit(0)
-    End if
+    'If objFSO.FileExists(oShell.CurrentDirectory & "\aliuacademy_org\academy\cronserver.pid") Then
+    '    WScript.Quit(0)
+    'End if
     WScript.Quit(1)
 
 'Option 4 will add the system start task.
