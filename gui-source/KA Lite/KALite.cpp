@@ -26,6 +26,8 @@ void startServerAction()
 	else
 	{
 		menu1->disable();
+		menu2->enable();
+		menu3->enable();
 		printConsole("The script was run successfully.\n");
 
 		needNotify = true;
@@ -53,7 +55,7 @@ void stopServerAction()
 
 void loadBrowserAction()
 {
-	if(!loadBrowser("http://127.0.0.1:8008/"))
+	if(!loadBrowser("http://127.0.0.1:8085/"))
 	{
 		// Handle error.
 	}

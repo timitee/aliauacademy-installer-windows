@@ -1,4 +1,4 @@
-#define MyAppName "AliuaAcademy"
+#define MyAppName "AliuAcademy"
 #define MyAppPublisher "Foundation for Learning Equality"
 #define MyAppURL "http://learningequality.org/"
 #define MyAppExeName "AliuAcademy.exe"
@@ -6,7 +6,7 @@
 #define getAcademyVersion() \
     Local[1] = Exec(SourcePath+"\getversion.bat") == 0 ? StringChange(FileRead(FileOpen(SourcePath+"\version.temp")), " ", "") : "null"
 
-#define MyVersion = "1.0.0."
+#define MyVersion = "1.0.0.0"
 // getAcademyVersion();
 
 #expr DeleteFile(SourcePath+"\version.temp")
@@ -48,7 +48,7 @@ Source: "..\python-setup\*"; DestDir: "{app}\python-setup"; Flags: ignoreversion
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{group}\{cm:ProgramOnTheWeb,{#MyAppName}}"; Filename: "{#MyAppURL}"
-Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "Uninstall AliuAcademy"
+Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{app}\unins000.exe"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon ; IconFilename: "{app}\images\logo48.ico"
 
 [Run]
@@ -329,7 +329,7 @@ begin
 
     RegDeleteValue(HKCU, 'SOFTWARE\Microsoft\Windows\CurrentVersion\Run', ExpandConstant('{#MyAppName}'));
    
-    if ShellExec('open', 'python.exe','-c "import sys; sys.version_info[0]==2 and sys.version_info[1] >= 6 and sys.exit(0) or sys.exit(1)"', '', SW_HIDE, ewWaitUntilTerminated, PythonVersionCodeCheck) then
+    if ShellExec('open', 'python.exe','-c "import sys; sys.version_info[0]==3 and sys.version_info[1] >= 4 and sys.exit(0) or sys.exit(1)"', '', SW_HIDE, ewWaitUntilTerminated, PythonVersionCodeCheck) then
     begin
         if PythonVersionCodeCheck = 1 then
         begin
@@ -346,7 +346,7 @@ function InitializeUninstall(): Boolean;
 var
 ErrorCode: Integer;
 begin
-  ShellExec('open', 'taskkill.exe', '/F /T /im "KA Lite.exe"', '', SW_HIDE, ewNoWait, ErrorCode);
+  ShellExec('open', 'taskkill.exe', '/F /T /im "AliuAcademy.exe"', '', SW_HIDE, ewNoWait, ErrorCode);
   ShellExec('open', 'tskill.exe', '"AliuAcademy"', '', SW_HIDE, ewNoWait, ErrorCode);
   ShellExec('open', ExpandConstant('{app}') + '\aliuacademy_org\stop.bat', '', '', SW_HIDE, ewNoWait, ErrorCode);
   result := True;
@@ -383,7 +383,7 @@ begin
         begin
             if Not informationBoxFlagged then
             begin
-                MsgBox('AliuaAcademy old data structure' #13#13 'Setup detected that you have the old file structure. Setup will now move data to update the structure. Please be patient; this may take some time.', mbInformation, MB_OK);
+                MsgBox('AliuAcademy old data structure' #13#13 'Setup detected that you have the old file structure. Setup will now move data to update the structure. Please be patient; this may take some time.', mbInformation, MB_OK);
                 informationBoxFlagged :=True;
             end;      
             Exec(ExpandConstant('{cmd}'),'/C mkdir '+ExpandConstant('{tmp}')+'\aliuacademy_org\content & xcopy /y /s content\* '+ExpandConstant('{tmp}')+'\aliuacademy_org\content', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, moveContentFolderTemp);      
@@ -431,11 +431,11 @@ begin
                 begin
                     if Not SaveStringToFile(ExpandConstant('{app}')+'\CONFIG.dat', 'RUN_AT_STARTUP:TRUE;' + #13#10, False) then
                     begin
-                        MsgBox('Configuration file error.' #13#13 'Setup has failed to add the entry in the configuration file to run AliuaAcademy at Windows startup. The installation may proceed and you can set this option later while using AliuaAcademy.', mbError, MB_OK);
+                        MsgBox('Configuration file error.' #13#13 'Setup has failed to add the entry in the configuration file to run AliuAcademy at Windows startup. The installation may proceed and you can set this option later while using AliuAcademy.', mbError, MB_OK);
                     end;
                 end
                 else begin
-                    MsgBox('GUI tools error.' #13#13 'Setup has failed to register a task to run AliuaAcademy at Windows startup. The installation may proceed and you can set this option later while using AliuaAcademy.', mbError, MB_OK);
+                    MsgBox('GUI tools error.' #13#13 'Setup has failed to register a task to run AliuAcademy at Windows startup. The installation may proceed and you can set this option later while using AliuAcademy.', mbError, MB_OK);
                 end;      
             end
             else if StartupPage.SelectedValueIndex = 1 then
@@ -444,11 +444,11 @@ begin
                 begin
                     if Not SaveStringToFile(ExpandConstant('{app}')+'\CONFIG.dat', 'RUN_AT_USER_LOGIN:TRUE;' + #13#10, False) then
                     begin
-                        MsgBox('Configuration file error.' #13#13 'Setup has failed to add the entry in the configuration file to run AliuaAcademy on user login. The installation may proceed and you can set this option later while using AliuaAcademy.', mbError, MB_OK);
+                        MsgBox('Configuration file error.' #13#13 'Setup has failed to add the entry in the configuration file to run AliuAcademy on user login. The installation may proceed and you can set this option later while using AliuAcademy.', mbError, MB_OK);
                     end;
                 end
                 else begin
-                    MsgBox('GUI tools error.' #13#13 'Setup has failed to add the shortcut at the startup folder to run AliuaAcademy on user login. The installation may proceed and you can set this option later while using AliuaAcademy.', mbError, MB_OK);
+                    MsgBox('GUI tools error.' #13#13 'Setup has failed to add the shortcut at the startup folder to run AliuAcademy on user login. The installation may proceed and you can set this option later while using AliuAcademy.', mbError, MB_OK);
                 end;
             end;
         end;

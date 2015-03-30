@@ -13,7 +13,8 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{FFBC0B6C-0017-40B7-82B6-7CCA7A8E0C11}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>KALite</RootNamespace>
+    <RootNamespace>AliuAcademy</RootNamespace>
+    <ProjectName>AliuAcademy</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
